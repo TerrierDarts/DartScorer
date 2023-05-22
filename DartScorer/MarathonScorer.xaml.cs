@@ -24,5 +24,12 @@ namespace DartScorer
         {
             InitializeComponent();
         }
+
+        
+private void Return_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow pg1 = new MainWindow();
+            this.Content= pg1;
+        }
     }
 }

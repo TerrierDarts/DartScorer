@@ -18,6 +18,9 @@ namespace DartScorer
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+   
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,9 +28,10 @@ namespace DartScorer
             InitializeComponent();
         }
 
-        private void Marathon_Start_Click(object sender, RoutedEventArgs e)
+         private void Marathon_Start_Click(object sender, RoutedEventArgs e)
         {
-            
+            MarathonScorer pg = new MarathonScorer();
+            this.Content = pg;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
