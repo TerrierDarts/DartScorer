@@ -26,6 +26,7 @@ namespace DartScorer
         public MainWindow()
         {
             InitializeComponent();
+            MarathonScorer.UpdateStats();
         }
 
          private void Marathon_Start_Click(object sender, RoutedEventArgs e)

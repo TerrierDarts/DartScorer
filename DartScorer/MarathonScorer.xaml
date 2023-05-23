@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DartScorer"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="300"
+      d:DesignHeight="500" d:DesignWidth="300"
       Title="MarathonScorer">
 
     <Grid>
@@ -15,21 +15,30 @@
                 <GradientStop Color="#FF0086DC" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBox HorizontalAlignment="Left" Height="32" Margin="38,225,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="130" FontSize="20"/>
-        <Button Content="Enter" HorizontalAlignment="Left" Height="32" Margin="183,225,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button Content="1" HorizontalAlignment="Left" Height="31" Margin="38,273,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="2" HorizontalAlignment="Left" Height="31" Margin="120,273,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="3" HorizontalAlignment="Left" Height="31" Margin="197,273,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="4" HorizontalAlignment="Left" Height="31" Margin="38,320,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="5" HorizontalAlignment="Left" Height="31" Margin="120,320,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="6" HorizontalAlignment="Left" Height="31" Margin="197,320,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="7" HorizontalAlignment="Left" Height="31" Margin="38,367,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="8" HorizontalAlignment="Left" Height="30" Margin="120,367,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="9" HorizontalAlignment="Left" Height="31" Margin="197,367,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Content="0" HorizontalAlignment="Left" Height="31" Margin="120,409,0,0" VerticalAlignment="Top" Width="48"/>
+        <TextBox x:Name="ScoreBox" HorizontalAlignment="Left" Height="32" Margin="38,225,0,0" TextWrapping="Wrap" Text="" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Top" Width="130" FontSize="20" KeyDown="CheckEnter" />
+        <Button Content="Enter" HorizontalAlignment="Left" Height="32" Margin="183,225,0,0" VerticalAlignment="Top" Width="76" Click="Enter_Click"/>
+        <Button Content="1" HorizontalAlignment="Left" Height="31" Margin="38,273,0,0" VerticalAlignment="Top" Width="48" Click="One_Click"/>
+        <Button Content="2" HorizontalAlignment="Left" Height="31" Margin="120,273,0,0" VerticalAlignment="Top" Width="48" Click="Two_Click"/>
+        <Button Content="3" HorizontalAlignment="Left" Height="31" Margin="197,273,0,0" VerticalAlignment="Top" Width="48" Click="Three_Click"/>
+        <Button Content="4" HorizontalAlignment="Left" Height="31" Margin="38,320,0,0" VerticalAlignment="Top" Width="48" Click="Four_Click"/>
+        <Button Content="5" HorizontalAlignment="Left" Height="31" Margin="120,320,0,0" VerticalAlignment="Top" Width="48" Click="Five_Click"/>
+        <Button Content="6" HorizontalAlignment="Left" Height="31" Margin="197,320,0,0" VerticalAlignment="Top" Width="48" Click="Six_Click"/>
+        <Button Content="7" HorizontalAlignment="Left" Height="31" Margin="38,367,0,0" VerticalAlignment="Top" Width="48" Click="Seven_Click"/>
+        <Button Content="8" HorizontalAlignment="Left" Height="30" Margin="120,367,0,0" VerticalAlignment="Top" Width="48" Click="Eight_Click"/>
+        <Button Content="9" HorizontalAlignment="Left" Height="31" Margin="197,367,0,0" VerticalAlignment="Top" Width="48" Click="Nine_Click"/>
+        <Button Content="0" HorizontalAlignment="Left" Height="31" Margin="120,409,0,0" VerticalAlignment="Top" Width="48" Click="Zero_Click"/>
         <Button Content="Undo" HorizontalAlignment="Left" Height="31" Margin="197,409,0,0" VerticalAlignment="Top" Width="48"/>
-        <Label Content="100001" HorizontalAlignment="Center" Height="74" Margin="0,10,0,0" VerticalAlignment="Top" Width="280" Foreground="White" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button Content="Del" HorizontalAlignment="Left" Height="31" Margin="38,409,0,0" VerticalAlignment="Top" Width="48" Click="Del_Click"/>
+        <Label x:Name="CurrentScore" Content="100001" HorizontalAlignment="Center" Height="74" Margin="0,10,0,0" VerticalAlignment="Top" Width="280 " Foreground="White" FontSize="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Button x:Name="ReturnHome" Content="Return" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="58" Click="Return_Click"/>
+
+        <Label x:Name="_180s" Content="180s" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="127" Margin="38,90,0,0" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
+        <Label x:Name="_170_" Content="170+" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="93" Margin="38,115,0,0" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
+        <Label x:Name="_140_" Content="140+" HorizontalAlignment="Left" Height="31" Margin="37,138,0,0" VerticalAlignment="Top" Width="128" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
+        <Label x:Name="_100_" Content="100+" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="102" Margin="37,162,0,0" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
+        <Label x:Name="avg" Content="Avg" HorizontalAlignment="Left" Height="31" Margin="146,90,0,0" VerticalAlignment="Top" Width="128" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
+        <Label x:Name="thrown_count" Content="Darts Thrown" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="235" Margin="29,189,0,0" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
+        <Label x:Name="time_taken" Content="Time" HorizontalAlignment="Left" Height="31" Margin="144,142,0,0" VerticalAlignment="Top" Width="127" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFBB5757" FontSize="16"/>
 
     </Grid>
 </Page>

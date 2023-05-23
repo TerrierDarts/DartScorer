@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DartScorer
 {
@@ -23,13 +15,123 @@ namespace DartScorer
         public MarathonScorer()
         {
             InitializeComponent();
+            HandleData.DartData();
+            ScoreBox.Focus();
         }
 
-        
-private void Return_Click(object sender, RoutedEventArgs e)
+
+        private void Return_Click(object sender, RoutedEventArgs e)
         {
             MainWindow pg1 = new MainWindow();
-            this.Content= pg1;
+            this.Content = pg1;
         }
+
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void One_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "1";
+        }
+        private void Two_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "2";
+        }
+        private void Three_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "3";
+        }
+        private void Four_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "4";
+        }
+        private void Five_Click(object sender, RoutedEventArgs e)
+        {
+
+            ScoreBox.Text = ScoreBox.Text + "5";
+        }
+        private void Six_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "6";
+        }
+        private void Seven_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "7";
+        }
+        private void Eight_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "8";
+        }
+        private void Nine_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = ScoreBox.Text + "9";
+        }
+        private void Zero_Click(object sender, RoutedEventArgs e)
+        {
+
+            ScoreBox.Text = ScoreBox.Text + "0";
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            ScoreBox.Text = "";
+        }
+
+        private void Enter_Click(object sender, RoutedEventArgs e)
+        {
+            enterScore();
+
+        }
+        private void CheckEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                enterScore();
+            }
+        }
+
+        public bool enterScore()
+        {
+            int currentScore = Convert.ToInt32(CurrentScore.Content);
+            int scored;
+            if (!int.TryParse(ScoreBox.Text, out scored))
+            {
+                scored = 0;
+            }
+            ScoreBox.Text = "";
+            int newScore = currentScore - scored;
+            if (newScore > 0)
+            {
+                CurrentScore.Content = newScore;
+            }
+            ScoreBox.Focus();
+            HandleData.HandleScore(scored);
+            UpdateStats();
+            return true;
+        }
+
+        public static bool UpdateStats()
+        {
+            int count180 = HandleData.Get180Count();
+            int count170 = HandleData.Get170Count();
+            int count140 = HandleData.Get140Count();
+            int count100 = HandleData.Get100Count();
+            Debug.WriteLine(count100);
+            int countDarts = HandleData.GetDartsThrown();
+            float countAvg = HandleData.GetAverage();
+            _180s.Content = "180s - " + count180.ToString();
+            _170_.Content = "170+ - " + count170.ToString();
+            _140_.Content = "140+ - " + count140.ToString();
+            _100_.Content = "100+ - " + count100;
+            avg.Content = "Avg - " + countAvg.ToString("F2");
+            thrown_count.Content = "Darts Thrown - " + countDarts.ToString();
+            return true;
+        }
+
+
     }
 }
