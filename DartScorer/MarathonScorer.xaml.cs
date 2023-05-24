@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -83,18 +84,18 @@ namespace DartScorer
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
-            enterScore();
+            EnterScore();
 
         }
         private void CheckEnter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                enterScore();
+                EnterScore();
             }
         }
 
-        public bool enterScore()
+        public bool EnterScore()
         {
             int currentScore = Convert.ToInt32(CurrentScore.Content);
             int scored;
@@ -110,11 +111,12 @@ namespace DartScorer
             }
             ScoreBox.Focus();
             HandleData.HandleScore(scored);
+           
             UpdateStats();
             return true;
         }
 
-        public static bool UpdateStats()
+        public void UpdateStats()
         {
             int count180 = HandleData.Get180Count();
             int count170 = HandleData.Get170Count();
@@ -129,9 +131,9 @@ namespace DartScorer
             _100_.Content = "100+ - " + count100;
             avg.Content = "Avg - " + countAvg.ToString("F2");
             thrown_count.Content = "Darts Thrown - " + countDarts.ToString();
-            return true;
+            
         }
-
+     
 
     }
 }

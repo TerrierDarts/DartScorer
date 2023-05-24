@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,10 +27,15 @@ namespace DartScorer
         public MainWindow()
         {
             InitializeComponent();
-            MarathonScorer.UpdateStats();
-        }
+            var client = new WebSocketClient("wss://127.0.0.1:5010");  // Replace with your WebSocket server URL
+            client.Connect();
+            client.SendText("180 SCORED");
 
-         private void Marathon_Start_Click(object sender, RoutedEventArgs e)
+
+        }
+    
+
+        private void Marathon_Start_Click(object sender, RoutedEventArgs e)
         {
             MarathonScorer pg = new MarathonScorer();
             this.Content = pg;

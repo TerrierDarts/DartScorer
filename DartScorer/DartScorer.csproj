@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="better-websocket-sharp" Version="1.0.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:\Users\tnpot\AppData\Local\StreamerBot\Newtonsoft.Json.dll</HintPath>
     </Reference>
