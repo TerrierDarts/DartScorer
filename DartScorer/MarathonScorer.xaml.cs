@@ -17,16 +17,15 @@ namespace DartScorer
         {
             InitializeComponent();
             HandleData.DartData();
+            UpdateStats();
             ScoreBox.Focus();
         }
 
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow pg1 = new MainWindow();
-            this.Content = pg1;
+            
         }
-
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -122,6 +121,7 @@ namespace DartScorer
             int count170 = HandleData.Get170Count();
             int count140 = HandleData.Get140Count();
             int count100 = HandleData.Get100Count();
+            int countScore = HandleData.GetRemainingScore();
             Debug.WriteLine(count100);
             int countDarts = HandleData.GetDartsThrown();
             float countAvg = HandleData.GetAverage();
@@ -129,6 +129,7 @@ namespace DartScorer
             _170_.Content = "170+ - " + count170.ToString();
             _140_.Content = "140+ - " + count140.ToString();
             _100_.Content = "100+ - " + count100;
+            CurrentScore.Content = countScore;
             avg.Content = "Avg - " + countAvg.ToString("F2");
             thrown_count.Content = "Darts Thrown - " + countDarts.ToString();
             
