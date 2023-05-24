@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using DartSocket;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -124,6 +125,7 @@ namespace DartScorer
             Debug.WriteLine(data["average"]);
             string updatedJsonString = data.ToString();
             File.WriteAllText(filePath, updatedJsonString);
+            WebSocketServerHelper.SendMessage(updatedJsonString);
 
             return true;
         }
