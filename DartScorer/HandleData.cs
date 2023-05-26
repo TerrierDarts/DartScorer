@@ -1,22 +1,30 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Markup;
 using DartSocket;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace DartScorer
 {
     internal class HandleData
     {
 
-        public static bool DartData()
+        public static bool DartData(string name, int score)
         {
             string filePath = "/data.json";
             if (!File.Exists(filePath))
             {
                 // Create the file if it doesn't exist
                 File.WriteAllText(filePath, "{}");
+                string jsonString = File.ReadAllText(filePath);
+                JObject data = JObject.Parse(jsonString);
+                data["player"] = name;
+                data["startingScore"] = score;
+                string updatedJsonString = data.ToString();
+                File.WriteAllText(filePath, updatedJsonString);
             }
             return true;
         }
@@ -104,6 +112,7 @@ namespace DartScorer
             int count170 = data["170"] != null ? (int)data["170"] : 0;
             int count140 = data["140"] != null ? (int)data["140"] : 0;
             int count100 = data["100"] != null ? (int)data["100"] : 0;
+            int starting = data["startingScore"] != null ? (int)data["startingScore"] : 100001;
             if (score == 180)
             {
                 
@@ -137,10 +146,11 @@ namespace DartScorer
             data["100"] = count100;
             data["totalScored"] = totalScored + score;
             data["dartsThrown"] = dartsThrown + 3;
-            data["average"] = (totalScored+score)/((dartsThrown+3)/3);
+            float averageF = (totalScored + score) / ((dartsThrown + 3) / 3);
+            data["average"] = String.Format("{0:0.00}", averageF);
             data["lastScore"] = score;
-            data["player"] = "TerrierDarts";
-            data["remaining"] = 100001 - totalScored - score;
+           
+            data["remaining"] =  starting - totalScored - score;
 
             Debug.WriteLine((totalScored + score) / ((dartsThrown + 3) / 3));
             Debug.WriteLine(data["average"]);

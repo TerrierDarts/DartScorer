@@ -24,7 +24,7 @@ namespace DartScorer
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            
+            MainWindow.Instance.Content = new MainWindow();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

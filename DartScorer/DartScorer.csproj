@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MarathonScorer.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="MarathonScorer.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="better-websocket-sharp" Version="1.0.2.1" />
   </ItemGroup>
 
