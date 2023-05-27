@@ -51,10 +51,10 @@ namespace DartScorer
             if (int.TryParse(LastScore(), out score))
                 {
                 JObject data = JObject.Parse(jsonString);
-                int count180 = data["180"] != null ? (int)data["180"] : 0;
-                int count170 = data["170"] != null ? (int)data["170"] : 0;
-                int count140 = data["140"] != null ? (int)data["140"] : 0;
-                int count100 = data["100"] != null ? (int)data["100"] : 0;
+                int count180 = data["c180"] != null ? (int)data["c180"] : 0;
+                int count170 = data["c170"] != null ? (int)data["c170"] : 0;
+                int count140 = data["c140"] != null ? (int)data["c140"] : 0;
+                int count100 = data["c100"] != null ? (int)data["c100"] : 0;
                 int starting = data["startingScore"] != null ? (int)data["startingScore"] : 100001;
                 if (score == 180)
                 {
@@ -83,10 +83,10 @@ namespace DartScorer
                 }
                 double totalScored = data["totalScored"] != null ? (double)data["totalScored"] : 0;
                 double dartsThrown = data["dartsThrown"] != null ? (double)data["dartsThrown"] : 0;
-                data["180"] = count180;
-                data["170"] = count170;
-                data["140"] = count140;
-                data["100"] = count100;
+                data["c180"] = count180;
+                data["c170"] = count170;
+                data["c140"] = count140;
+                data["c100"] = count100;
                 data["totalScored"] = totalScored - score;
                 data["dartsThrown"] = dartsThrown - 3;
                 double averageF = (totalScored - score) / ((dartsThrown - 3) / 3);

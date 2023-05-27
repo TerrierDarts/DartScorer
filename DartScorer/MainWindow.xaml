@@ -51,7 +51,7 @@
         <Label x:Name="startingScore" Content="Starting Score :" HorizontalAlignment="Left" Height="38" Margin="1,87,0,0" VerticalAlignment="Top" Width="124" Foreground="White" FontSize="14" RenderTransformOrigin="0.375,1.051"/>
         <TextBox x:Name="PlayerNameBox" HorizontalAlignment="Left" Height="28" Margin="110,54,0,0" TextWrapping="Wrap" Text="TerrierDarts" VerticalAlignment="Top" Width="140" FontSize="16"/>
         <TextBox x:Name="StartingScoreBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="28" Margin="110,87,0,0" TextWrapping="Wrap" Text="100001" VerticalAlignment="Top" Width="140" FontSize="16" />
-        <TextBlock x:Name="PreviousScoresList" HorizontalAlignment="Left" Height="179" Margin="183,408,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="92" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="14" Foreground="#FF0D8215"/>
+        <TextBlock x:Name="PreviousScoresList" HorizontalAlignment="Left" Height="216" Margin="183,408,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="92" FontWeight="Bold" FontFamily="Cascadia Code" FontSize="14" Foreground="#FF0D8215"/>
 
 
     </Grid>
