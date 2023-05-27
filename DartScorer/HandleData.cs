@@ -70,13 +70,13 @@ namespace DartScorer
             return count;
         }
 
-        public static float GetAverage()
+        public static double GetAverage()
         {
             string filePath = "/data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
-            float count = data["average"] != null ? (float)data["average"] : 0;
+            double count = data["average"] != null ? (double)data["average"] : 0;
             return count;
         }
 
@@ -138,18 +138,19 @@ namespace DartScorer
                 count100 += 1;
                 
             }
-           float totalScored = data["totalScored"] != null ? (float)data["totalScored"] : 0;
-           float dartsThrown = data["dartsThrown"] != null ? (float)data["dartsThrown"] : 0;
+           double totalScored = data["totalScored"] != null ? (double)data["totalScored"] : 0;
+           double dartsThrown = data["dartsThrown"] != null ? (double)data["dartsThrown"] : 0;
             data["180"] = count180;
             data["170"] = count170;
             data["140"] = count140;
             data["100"] = count100;
             data["totalScored"] = totalScored + score;
             data["dartsThrown"] = dartsThrown + 3;
-            float averageF = (totalScored + score) / ((dartsThrown + 3) / 3);
-            data["average"] = String.Format("{0:0.00}", averageF);
+            double averageF = (totalScored + score) / ((dartsThrown + 3) / 3);
+            string averageS = averageF.ToString("F2");
+            data["average"] = Convert.ToDouble(averageS);
             data["lastScore"] = score;
-           
+            data["previousScores"] = UndoScore.AddLastScore(score);
             data["remaining"] =  starting - totalScored - score;
 
             Debug.WriteLine((totalScored + score) / ((dartsThrown + 3) / 3));

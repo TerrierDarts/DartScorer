@@ -1,10 +1,12 @@
 ﻿using DartSocket;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace DartScorer
@@ -110,9 +112,13 @@ namespace DartScorer
             }
             ScoreBox.Text = "";
             int newScore = currentScore - scored;
-            if (newScore > 0)
+            if (newScore >= 0)
             {
                 CurrentScore.Content = newScore;
+            }
+            else
+            {
+                scored = 0;
             }
             ScoreBox.Focus();
             HandleData.HandleScore(scored);
@@ -128,13 +134,15 @@ namespace DartScorer
             int count140 = HandleData.Get140Count();
             int count100 = HandleData.Get100Count();
             int countScore = HandleData.GetRemainingScore();
+            JArray previousScoresList = UndoScore.GetLastScores();
             Debug.WriteLine(count100);
             int countDarts = HandleData.GetDartsThrown();
-            float countAvg = HandleData.GetAverage();
+            double countAvg = HandleData.GetAverage();
             _180s.Content = "180s - " + count180.ToString();
             _170_.Content = "170+ - " + count170.ToString();
             _140_.Content = "140+ - " + count140.ToString();
             _100_.Content = "100+ - " + count100;
+            PreviousScoresList.Text = "Previous Scores:" + previousScoresList.ToString();
             CurrentScore.Content = countScore;
             avg.Content = "Avg - " + countAvg.ToString("F2");
             thrown_count.Content = "Darts Thrown - " + countDarts.ToString();
@@ -142,7 +150,7 @@ namespace DartScorer
 
         }
 
-        private void Return_Click(object sender, RoutedEventArgs e)
+        private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             string filePath = "/data.json";
             // Create the file if it doesn't exist
@@ -159,6 +167,11 @@ namespace DartScorer
             CurrentScore.Content = StartingScoreBox.Text;
         }
 
-       
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            UndoScore.RemoveLastScore();
+            UpdateStats();
+
+        }
     }
 }
