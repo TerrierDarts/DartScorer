@@ -15,7 +15,7 @@ namespace DartScorer
     {
         public static JArray GetLastScores()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -25,7 +25,7 @@ namespace DartScorer
 
         public static string LastScore()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -44,7 +44,7 @@ namespace DartScorer
 
         public static bool RemoveLastScore()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
 
             string jsonString = File.ReadAllText(filePath);
             int score;
@@ -107,7 +107,7 @@ namespace DartScorer
 
         public static JArray AddLastScore(int score) {
 
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -122,7 +122,7 @@ namespace DartScorer
         public static JArray RemoveArrayScore()
         {
 
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);

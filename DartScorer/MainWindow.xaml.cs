@@ -152,7 +152,7 @@ namespace DartScorer
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Create the file if it doesn't exist
             File.WriteAllText(filePath, "{}");
             string jsonString = File.ReadAllText(filePath);

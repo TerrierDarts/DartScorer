@@ -11,7 +11,7 @@ namespace DartScorer
 
         public static bool DartData(string name, int score)
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             if (!File.Exists(filePath))
             {
                 // Create the file if it doesn't exist
@@ -28,7 +28,7 @@ namespace DartScorer
 
         public static int Get180Count()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -39,7 +39,7 @@ namespace DartScorer
 
         public static int Get170Count()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -49,7 +49,7 @@ namespace DartScorer
 
         public static int Get140Count()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -59,7 +59,7 @@ namespace DartScorer
 
         public static int Get100Count()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -69,7 +69,7 @@ namespace DartScorer
 
         public static double GetAverage()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -79,7 +79,7 @@ namespace DartScorer
 
         public static int GetDartsThrown()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -89,7 +89,7 @@ namespace DartScorer
 
         public static int GetRemainingScore()
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
             // Read the JSON data from the file
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
@@ -100,7 +100,7 @@ namespace DartScorer
 
         public static bool HandleScore(int score)
         {
-            string filePath = "/data.json";
+            string filePath = "./data.json";
 
             string jsonString = File.ReadAllText(filePath);
 
