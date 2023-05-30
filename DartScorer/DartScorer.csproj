@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>terrierdarts_logo_RuB_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,10 @@
 
   <ItemGroup>
     <Page Remove="MarathonScorer.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="terrierdarts_logo_RuB_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>

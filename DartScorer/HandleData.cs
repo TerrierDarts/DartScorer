@@ -20,6 +20,16 @@ namespace DartScorer
                 JObject data = JObject.Parse(jsonString);
                 data["player"] = name;
                 data["startingScore"] = score;
+                data["c180"] = 0;
+                data["c170"] = 0;
+                data["c140"] = 0;
+                data["c100"] = 0;
+                data["totalScored"] = 0;
+                data["dartsThrown"] = 0;
+                data["average"] = 0;
+                data["lastScore"] = 0;
+                data["previousScores"] = new JArray();
+                data["remaining"] = score;
                 string updatedJsonString = data.ToString();
                 File.WriteAllText(filePath, updatedJsonString);
             }
@@ -94,6 +104,28 @@ namespace DartScorer
             string jsonString = File.ReadAllText(filePath);
             JObject data = JObject.Parse(jsonString);
             int count = data["remaining"] != null ? (int)data["remaining"] : 100001;
+            return count;
+
+        }
+
+        public static int GetStartingScore()
+        {
+            string filePath = "./data.json";
+            // Read the JSON data from the file
+            string jsonString = File.ReadAllText(filePath);
+            JObject data = JObject.Parse(jsonString);
+            int count = data["startingScore"] != null ? (int)data["startingScore"] : 100001;
+            return count;
+
+        }
+
+        public static string GetPlayerName()
+        {
+            string filePath = "./data.json";
+            // Read the JSON data from the file
+            string jsonString = File.ReadAllText(filePath);
+            JObject data = JObject.Parse(jsonString);
+            string count = data["player"] != null ? (string)data["player"] : "TerrierDarts";
             return count;
 
         }

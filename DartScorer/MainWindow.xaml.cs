@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Printing;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace DartScorer
 {
@@ -134,6 +136,8 @@ namespace DartScorer
             int count140 = HandleData.Get140Count();
             int count100 = HandleData.Get100Count();
             int countScore = HandleData.GetRemainingScore();
+            int starting = HandleData.GetStartingScore();
+            string player = HandleData.GetPlayerName();
             JArray previousScoresList = UndoScore.GetLastScores();
             Debug.WriteLine(count100);
             int countDarts = HandleData.GetDartsThrown();
@@ -146,6 +150,11 @@ namespace DartScorer
             CurrentScore.Content = countScore;
             avg.Content = "Avg - " + countAvg.ToString("F2");
             thrown_count.Content = "Darts Thrown - " + countDarts.ToString();
+            UserName.Content = player;
+
+            PlayerNameBox.Text = player;
+            StartingScoreBox.Text = starting.ToString();
+            
 
 
         }
@@ -159,12 +168,23 @@ namespace DartScorer
             JObject data = JObject.Parse(jsonString);
             data["player"] = PlayerNameBox.Text;
             data["startingScore"] = Convert.ToInt32(StartingScoreBox.Text);
+            data["c180"] = 0;
+            data["c170"] = 0;
+            data["c140"] = 0;
+            data["c100"] = 0;
+            data["totalScored"] = 0;
+            data["dartsThrown"] = 0;
+            data["average"] = 0;
+            data["lastScore"] = 0;
+            data["previousScores"] = new JArray();
+            data["remaining"] = Convert.ToInt32(StartingScoreBox.Text);
             string updatedJsonString = data.ToString();
             File.WriteAllText(filePath, updatedJsonString);
             UpdateStats();
             ScoreBox.Focus();
             UserName.Content = PlayerNameBox.Text;
             CurrentScore.Content = StartingScoreBox.Text;
+            WebSocketServerHelper.SendMessage(updatedJsonString);
         }
 
         private void Undo_Click(object sender, RoutedEventArgs e)
